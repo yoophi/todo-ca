@@ -26,7 +26,12 @@ Python Boilerplate contains all the boilerplate you need to create a Python pack
 Features
 --------
 
-* TODO
+Run Flask REST API:
+
+.. code-block::
+
+   flask run
+
 
 Credits
 -------
