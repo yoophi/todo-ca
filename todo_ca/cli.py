@@ -6,8 +6,7 @@ import click
 @click.command()
 def main(args=None):
     """Console script for todo_ca."""
-    click.echo("Replace this message by putting your code into "
-               "todo_ca.cli.main")
+    click.echo("Replace this message by putting your code into " "todo_ca.cli.main")
     click.echo("See click documentation at https://click.palletsprojects.com/")
     return 0
 

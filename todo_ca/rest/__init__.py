@@ -11,4 +11,4 @@ def create_app(config):
 def init_blueprint(app: Flask):
     from .api import api as api_bp
 
-    app.register_blueprint(api_bp, url_prefix='/api')
+    app.register_blueprint(api_bp, url_prefix="/api")
