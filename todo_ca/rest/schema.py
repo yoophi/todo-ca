@@ -4,7 +4,6 @@ from marshmallow import fields
 from .extensions import ma
 
 
-
 class TodoSchema(ma.Schema):
     class Meta:
         fields = (
@@ -12,4 +11,3 @@ class TodoSchema(ma.Schema):
             "title",
             "is_completed",
         )
-

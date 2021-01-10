@@ -10,3 +10,8 @@ class MemRepo(BaseRepo):
 
     def get_todo_list(self):
         return self.todos
+
+    def get_todo(self, todo_id):
+        for todo in self.todos:
+            if todo.id == todo_id:
+                return todo

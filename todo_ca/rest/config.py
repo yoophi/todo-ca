@@ -5,7 +5,6 @@ APP_DIR = os.path.dirname(__file__)
 DEFAULT_SECRET_KEY = "change-me"
 
 
-
 class Config:
     SECRET_KEY = os.environ.get("SECRET_KEY") or DEFAULT_SECRET_KEY
 
@@ -64,4 +63,3 @@ config = {
     "unix": UnixConfig,
     "default": DevelopmentConfig,
 }
-
