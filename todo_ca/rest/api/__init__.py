@@ -3,6 +3,7 @@ from dataclasses import asdict
 from flask import Blueprint, jsonify, current_app
 
 from todo_ca.rest.repo import repo
+from todo_ca.rest.schema import TodoSchema
 
 api = Blueprint("api", __name__)
 
@@ -24,4 +25,5 @@ def todo_list():
     if not resp:
         return jsonify(message=resp.message), 400
 
-    return jsonify([asdict(item) for item in resp.value])
+    schema = TodoSchema(many=True)
+    return jsonify(schema.dump(resp.value))

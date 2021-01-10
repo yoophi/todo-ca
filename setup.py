@@ -14,6 +14,8 @@ requirements = [
     'Click>=7.0',
     'ca_util',
     'flask',
+    'flask-cors',
+    'flask-marshmallow',
 ]
 
 setup_requirements = ['pytest-runner', ]

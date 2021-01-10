@@ -19,3 +19,7 @@ class Todo:
             kwargs[k] = adict.get(k)
 
         return cls(**kwargs)
+
+    @property
+    def is_completed(self):
+        return self.completed is True
