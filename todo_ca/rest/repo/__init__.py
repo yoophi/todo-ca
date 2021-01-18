@@ -13,21 +13,21 @@ def get_repo():
                     "id": 1,
                     "title": "todo 1",
                     "completed": True,
-                }
+                },
             ),
             Todo.from_dict(
                 {
                     "id": 2,
                     "title": "todo 2",
                     "completed": True,
-                }
+                },
             ),
             Todo.from_dict(
                 {
                     "id": 3,
                     "title": "todo 3",
                     "completed": False,
-                }
+                },
             ),
         ]
 

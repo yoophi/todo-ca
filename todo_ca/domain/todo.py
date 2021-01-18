@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Dict
+from typing import Dict, Optional
 
 
 @dataclass
@@ -9,7 +9,10 @@ class Todo:
     completed: bool
 
     @classmethod
-    def from_dict(cls, adict: Dict):
+    def from_dict(cls, adict: Optional[Dict] = None, **kwargs):
+        if not adict:
+            adict = kwargs
+
         kwargs = {}
         for k in (
             "id",

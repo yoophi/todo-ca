@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 
 from todo_ca.rest.repo import repo
 from todo_ca.rest.schema import TodoSchema
@@ -39,6 +39,56 @@ def todo_detail(todo_id):
 
     use_case = uc.TodoDetailUseCase(repo=repo)
     request_object = TodoIdRequestObject.from_dict(dict(todo_id=todo_id))
+    resp = use_case.execute(request_object)
+
+    if not resp:
+        return jsonify(message=resp.message), 404
+
+    schema = TodoSchema()
+    return jsonify(schema.dump(resp.value))
+
+
+@api.route(
+    "/todos",
+    methods=[
+        "POST",
+    ],
+)
+def todo_create():
+    from todo_ca.use_cases import todo_create as uc
+    from todo_ca.request_objects.todo_create import TodoCreateRequestObject
+
+    payload = request.get_json()
+    use_case = uc.TodoCreateUseCase(repo=repo)
+    request_object = TodoCreateRequestObject.from_dict(dict(title=payload.get("title")))
+    resp = use_case.execute(request_object)
+
+    if not resp:
+        return jsonify(message=resp.message), 400
+
+    schema = TodoSchema()
+    return jsonify(schema.dump(resp.value))
+
+
+@api.route(
+    "/todos/<int:todo_id>",
+    methods=[
+        "PUT",
+    ],
+)
+def todo_update(todo_id):
+    from todo_ca.use_cases import todo_update as uc
+    from todo_ca.request_objects.todo_update import TodoUpdateRequestObject
+
+    payload = request.get_json()
+    use_case = uc.TodoUpdateUseCase(repo=repo)
+    request_object = TodoUpdateRequestObject.from_dict(
+        dict(
+            todo_id=todo_id,
+            title=payload.get("title"),
+            completed=payload.get("completed"),
+        )
+    )
     resp = use_case.execute(request_object)
 
     if not resp:
