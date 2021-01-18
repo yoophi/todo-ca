@@ -17,3 +17,7 @@ class BaseRepo(abc.ABC):
     @abc.abstractmethod
     def update_todo(self, todo_id: int, title: str, completed: bool):
         pass
+
+    @abc.abstractmethod
+    def delete_todo(self, todo_id: int) -> bool:
+        pass

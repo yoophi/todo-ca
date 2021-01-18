@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, current_app
 
 from todo_ca.rest.repo import repo
 from todo_ca.rest.schema import TodoSchema
@@ -87,6 +87,31 @@ def todo_update(todo_id):
             todo_id=todo_id,
             title=payload.get("title"),
             completed=payload.get("completed"),
+        )
+    )
+    resp = use_case.execute(request_object)
+
+    if not resp:
+        return jsonify(message=resp.message), 404
+
+    schema = TodoSchema()
+    return jsonify(schema.dump(resp.value))
+
+
+@api.route(
+    "/todos/<int:todo_id>",
+    methods=[
+        "DELETE",
+    ],
+)
+def todo_delete(todo_id):
+    from todo_ca.use_cases import todo_delete as uc
+    from todo_ca.request_objects.todo_id import TodoIdRequestObject
+
+    use_case = uc.TodoDeleteUseCase(repo=repo)
+    request_object = TodoIdRequestObject.from_dict(
+        dict(
+            todo_id=todo_id,
         )
     )
     resp = use_case.execute(request_object)

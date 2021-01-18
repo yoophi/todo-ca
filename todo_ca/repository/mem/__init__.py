@@ -30,10 +30,30 @@ class MemRepo(BaseRepo):
         updated_todo = None
         for todo in todos:
             if todo.id == todo_id:
-                todo.title = title
-                todo.completed = completed
+                if title is not None:
+                    todo.title = title
+                if isinstance(completed, bool):
+                    todo.completed = completed
+
                 updated_todo = todo
 
             new_todos.append(todo)
 
+        self.todos = new_todos
+
         return updated_todo
+
+    def delete_todo(self, todo_id: int):
+        todos = self.get_todo_list()
+        new_todos = []
+        todo_deleted = False
+        for todo in todos:
+            if todo.id == todo_id:
+                todo_deleted = True
+                continue
+
+            new_todos.append(todo)
+
+        self.todos = new_todos
+
+        return todo_deleted
