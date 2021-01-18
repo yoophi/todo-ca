@@ -1,10 +1,10 @@
 from typing import List
 
 from todo_ca.domain.todo import Todo
-from todo_ca.repository import BaseRepo
+from todo_ca.repository import RepoInterface
 
 
-class MemRepo(BaseRepo):
+class MemRepo(RepoInterface):
     def __init__(self, todos: List[Todo]):
         self.todos = todos
 

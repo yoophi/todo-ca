@@ -1,11 +1,11 @@
 from ca_util import UseCase, ResponseSuccess, ResponseFailure
 
-from todo_ca.repository import BaseRepo
+from todo_ca.repository import RepoInterface
 from todo_ca.request_objects.todo_id import TodoIdRequestObject
 
 
 class TodoDetailUseCase(UseCase):
-    def __init__(self, repo: BaseRepo):
+    def __init__(self, repo: RepoInterface):
         self.repo = repo
 
     def process_request(self, request_object: TodoIdRequestObject):
