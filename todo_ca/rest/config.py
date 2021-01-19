@@ -7,6 +7,9 @@ DEFAULT_SECRET_KEY = "change-me"
 
 class Config:
     SECRET_KEY = os.environ.get("SECRET_KEY") or DEFAULT_SECRET_KEY
+    REPOSITORY_TYPE = "sqla"
+
+    SQLALCHEMY_DATABASE_URI = "sqlite:///database.sqlite"
 
     @staticmethod
     def init_app(app):
