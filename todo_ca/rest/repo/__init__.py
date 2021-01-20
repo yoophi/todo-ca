@@ -1,5 +1,10 @@
+from flask import current_app
+from werkzeug.local import LocalProxy
+
 from todo_ca.domain.todo import Todo
 from todo_ca.repository.mem import MemRepo
+from todo_ca.repository.sqla.repo import SqlaRepo
+from todo_ca.rest.database import db
 
 todos = [
     Todo.from_dict(
@@ -25,4 +30,21 @@ todos = [
     ),
 ]
 
-repo = MemRepo(todos=todos)
+app_repo = None
+
+
+def get_repo():
+    global app_repo, todos
+
+    if app_repo is None:
+        if current_app.config.get("REPOSITORY_TYPE") == "sqla":
+            app_repo = SqlaRepo(db=db)
+        elif current_app.config.get("REPOSITORY_TYPE") == "mem":
+            app_repo = MemRepo(todos=todos)
+        else:
+            app_repo = MemRepo(todos=todos)
+
+    return app_repo
+
+
+repo = LocalProxy(get_repo)
