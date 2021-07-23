@@ -1,8 +1,8 @@
 from flask import Flask
 
-from todo_ca.rest.config import config
-from todo_ca.rest.database import db, migrate
-from todo_ca.rest.extensions import cors, ma
+from todo_ca.entrypoints.flask_app.config import config
+from todo_ca.entrypoints.flask_app.database import db, migrate
+from todo_ca.entrypoints.flask_app.extensions import cors, ma
 
 
 def create_app(config_name="default", settings_override=None):

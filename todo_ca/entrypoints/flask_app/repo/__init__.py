@@ -4,7 +4,7 @@ from werkzeug.local import LocalProxy
 from todo_ca.domain.todo import Todo
 from todo_ca.repository.mem import MemRepo
 from todo_ca.repository.sqla.repo import SqlaRepo
-from todo_ca.rest.database import db
+from todo_ca.entrypoints.flask_app.database import db
 
 todos = [
     Todo.from_dict(

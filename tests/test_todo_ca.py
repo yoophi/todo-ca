@@ -7,7 +7,7 @@ import pytest
 from click.testing import CliRunner
 
 from todo_ca import todo_ca
-from todo_ca import cli
+from todo_ca.entrypoints import cli
 
 
 @pytest.fixture

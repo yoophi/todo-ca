@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request, current_app
 
-from todo_ca.rest.repo import repo
-from todo_ca.rest.schema import TodoSchema
+from todo_ca.entrypoints.flask_app.repo import repo
+from todo_ca.entrypoints.flask_app.schema import TodoSchema
 
 api = Blueprint("api", __name__)
 
