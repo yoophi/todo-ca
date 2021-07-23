@@ -105,3 +105,6 @@ ENV/
 .vscode/
 .idea/
 .envrc
+
+# persistence
+*.sqlite
