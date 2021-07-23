@@ -16,6 +16,7 @@ requirements = [
     "flask",
     "flask-cors",
     "flask-marshmallow",
+    "flask-migrate",
 ]
 
 setup_requirements = [
@@ -44,7 +45,7 @@ setup(
     description="Python Boilerplate contains all the boilerplate you need to create a Python package.",
     entry_points={
         "console_scripts": [
-            "todo_ca=todo_ca.cli:main",
+            "todo_ca=todo_ca.entrypoints.cli:main",
         ],
     },
     install_requires=requirements,
